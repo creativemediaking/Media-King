@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDIA KING — Short-Form Video Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --green: #1cff00; /* Updated Branding Color */
+    --green-dim: #17d100;
+    --green-glow: rgba(28,255,0,0.15);
+    --gray-900: #111111;
+    --gray-800: #1a1a1a;
+    --gray-700: #252525;
+    --gray-600: #333333;
+    --gray-300: #888888;
+    --gray-100: #cccccc;
+    --accent-yellow: #FFD60A;
+    --accent-pink: #FF2D6B;
+    --font: 'Poppins', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(28,255,0,0.08);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--white);
+  }
+
+  .nav-logo img {
+    height: 32px; /* Adjustable height for your Image 1 */
+    width: auto;
+    object-fit: contain;
+  }
+
+  .nav-logo span { color: var(--green); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--black);
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  /* HERO WITH VIDEO BACKGROUND */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 16:9 Video Container at 70% Transparency */
+  .hero-video-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 16 / 9;
+    opacity: 0.3; /* 70% Transparency */
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 110%, rgba(28,255,0,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(255,45,107,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Ensures hero content sits safely above video */
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(28,255,0,0.1);
+    border: 1px solid rgba(28,255,0,0.25);
+    color: var(--green);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    max-width: 14ch;
+  }
+
+  .hero h1 .line-green { color: var(--green); }
+  .hero h1 .line-outline {
+    -webkit-text-stroke: 2px var(--white);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--gray-300);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--black);
+    padding: 0.9rem 2.2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s, background 0.2s;
+    font-family: var(--font);
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); background: var(--green-dim); }
+
+  .btn-ghost {
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--gray-800);
+    border-bottom: 1px solid var(--gray-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow: hidden;
+    background: var(--gray-900);
+  }
+
+  .trust-track {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 35s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-300);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .trust-item .dot { color: var(--green); font-size: 1.2rem; }
+
+  /* SECTION COMMON */
+  section { padding: 7rem 4rem; }
+
+  .section-tag {
+    display: inline-block;
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 18ch;
+  }
+
+  .section-title .hl { color: var(--green); }
+
+  /* STATS BAND */
+  .stats-band {
+    padding: 4rem 4rem;
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .stat-card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--gray-800);
+    position: relative;
+  }
+
+  .stat-card:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-num span { color: var(--green); }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--gray-300);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* SERVICES */
+  #services { background: var(--black); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .services-desc {
+    max-width: 380px;
+    color: var(--gray-300);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--gray-700);
+    border: 1.5px solid var(--gray-700);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--gray-900);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover { background: var(--gray-800); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .service-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+
+  .service-card p {
+    font-size: 0.875rem;
+    color: var(--gray-300);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .service-card .service-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* PROCESS */
+  #process {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .process-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .process-left { position: sticky; top: 7rem; }
+
+  .process-left p {
+    margin-top: 1.5rem;
+    color: var(--gray-300);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .process-steps { display: flex; flex-direction: column; gap: 0; }
+
+  .process-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--gray-800);
+    position: relative;
+  }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gray-300);
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .process-step:hover .step-num {
+    border-color: var(--green);
+    color: var(--black);
+    background: var(--green);
+  }
+
+  .step-body h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+  }
+
+  .step-body p {
+    font-size: 0.875rem;
+    color: var(--gray-300);
+    line-height: 1.7;
+  }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--black); }
+
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .portfolio-card {
+    background: var(--gray-800);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-700);
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(28,255,0,0.3);
+  }
+
+  .portfolio-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    max-height: 220px;
+    background: var(--gray-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio-thumb .play-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .portfolio-thumb .play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--black);
+    margin-left: 3px;
+  }
+
+  .portfolio-thumb .platform-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.7);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .thumb-bg-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+  .thumb-bg-2 { background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #3d0c5e 100%); }
+  .thumb-bg-3 { background: linear-gradient(135deg, #0a2e1a 0%, #1b4e2d 50%, #0c5e3d 100%); }
+  .thumb-bg-4 { background: linear-gradient(135deg, #2e1a0a 0%, #4e2d1b 50%, #5e3d0c 100%); }
+  .thumb-bg-5 { background: linear-gradient(135deg, #2e0a1a 0%, #4e1b2d 50%, #5e0c3d 100%); }
+  .thumb-bg-6 { background: linear-gradient(135deg, #0a1a2e 0%, #1b2d4e 50%, #0c3d5e 100%); }
+
+  .portfolio-info {
+    padding: 1.25rem;
+  }
+
+  .portfolio-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .portfolio-info p {
+    font-size: 0.8rem;
+    color: var(--gray-300);
+    line-height: 1.5;
+  }
+
+  .portfolio-info .views {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3.5rem auto 0;
+  }
+
+  .review-card {
+    background: var(--gray-800);
+    border: 1px solid var(--gray-700);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .review-card:hover { border-color: rgba(28,255,0,0.2); }
+
+  .stars {
+    color: var(--accent-yellow);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    color: var(--gray-100);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .reviewer-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--black);
+    font-weight: 800;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .reviewer-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .reviewer-role {
+    font-size: 0.75rem;
+    color: var(--gray-300);
+  }
+
+  .review-platform {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--green-glow);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  /* UPWORK BADGE */
+  .upwork-section {
+    background: var(--black);
+    border-top: 1px solid var(--gray-800);
+    padding: 5rem 4rem;
+    text-align: center;
+  }
+
+  .upwork-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--gray-900);
+    border: 1px solid var(--gray-700);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .upwork-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 110%, rgba(28,255,0,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .upwork-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #14A800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .upwork-badges {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+
+  .upwork-badge-item {
+    background: rgba(20,168,0,0.1);
+    border: 1px solid rgba(20,168,0,0.25);
+    color: #14A800;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+
+  .upwork-stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1.5rem;
+  }
+
+  .upwork-stat { text-align: center; }
+  .upwork-stat .num {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.03em;
+  }
+  .upwork-stat .lbl {
+    font-size: 0.75rem;
+    color: var(--gray-300);
+    margin-top: 0.2rem;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--green);
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(0,0,0,0.03) 40px,
+      rgba(0,0,0,0.03) 80px
+    );
+  }
+
+  .cta-section h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: rgba(0,0,0,0.65);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    position: relative;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s;
+    display: inline-block;
+    position: relative;
+  }
+
+  .btn-dark:hover { transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .footer-logo img {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .footer-logo span { color: var(--green); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gray-300);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .stats-band { padding: 3rem 1.5rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-card:nth-child(2) { border-right: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-layout { grid-template-columns: 1fr; }
+    .process-left { position: static; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .services-header { flex-direction: column; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .trust-bar { padding: 2rem 1.5rem; }
+    .upwork-section { padding: 4rem 1.5rem; }
+    .cta-section { padding: 4rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .upwork-stat-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <!-- Place your image file name here (e.g., logo.png or image1.png) -->
+    <img src="image1.png" alt="MEDIA KING Logo" onerror="this.style.display='none'">
+    MEDIA <span>KING</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank" class="nav-cta">Hire on Upwork</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- 16:9 Video Element Layer with 70% transparency -->
+  <div class="hero-video-container">
+    <video autoplay loop muted playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+      <source src="your-video-file.mp4" type="video/mp4">
+      <!-- Alternate fallback video if you have a webm version -->
+      <!-- <source src="your-video-file.webm" type="video/webm"> -->
+    </video>
+  </div>
+  
+  <div class="hero-bg"></div>
+  
+  <div class="hero-content">
+    <div class="hero-badge">🎬 Short-Form Video Specialist</div>
+    <h1>
+      We Make<br>
+      <span class="line-green">Reels Go</span><br>
+      <span class="line-outline">Viral.</span>
+    </h1>
+    <p class="hero-sub">
+      Top-rated short-form video agency specializing in TikTok, Instagram Reels &amp; YouTube Shorts that stop scrolls, build audiences, and drive real results.
+    </p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">See Our Work</a>
+      <a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank" class="btn-ghost">Book a Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR (With graphic design, Drone videography, and cinematography added) -->
+<div class="trust-bar">
+  <div class="trust-track">
+    <span class="trust-item"><span class="dot">●</span> TikTok Editing</span>
+    <span class="trust-item"><span class="dot">●</span> Instagram Reels</span>
+    <span class="trust-item"><span class="dot">●</span> YouTube Shorts</span>
+    <span class="trust-item"><span class="dot">●</span> Graphic Design</span>
+    <span class="trust-item"><span class="dot">●</span> Drone Videography</span>
+    <span class="trust-item"><span class="dot">●</span> Cinematography</span>
+    <span class="trust-item"><span class="dot">●</span> Viral Content</span>
+    <span class="trust-item"><span class="dot">●</span> Hook Writing</span>
+    <span class="trust-item"><span class="dot">●</span> Color Grading</span>
+    <span class="trust-item"><span class="dot">●</span> Motion Graphics</span>
+    <span class="trust-item"><span class="dot">●</span> Captions & Subtitles</span>
+    <!-- Seamless Loop Reset Setup Below -->
+    <span class="trust-item"><span class="dot">●</span> TikTok Editing</span>
+    <span class="trust-item"><span class="dot">●</span> Instagram Reels</span>
+    <span class="trust-item"><span class="dot">●</span> YouTube Shorts</span>
+    <span class="trust-item"><span class="dot">●</span> Graphic Design</span>
+    <span class="trust-item"><span class="dot">●</span> Drone Videography</span>
+    <span class="trust-item"><span class="dot">●</span> Cinematography</span>
+    <span class="trust-item"><span class="dot">●</span> Viral Content</span>
+    <span class="trust-item"><span class="dot">●</span> Hook Writing</span>
+    <span class="trust-item"><span class="dot">●</span> Color Grading</span>
+    <span class="trust-item"><span class="dot">●</span> Motion Graphics</span>
+    <span class="trust-item"><span class="dot">●</span> Captions & Subtitles</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-num">60<span>+</span></div>
+      <div class="stat-label">Jobs Completed on Upwork</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-num">4.9<span>★</span></div>
+      <div class="stat-label">Average Client Rating</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Job Success Score</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-num">1.3<span>K</span></div>
+      <div class="stat-label">Total Hours Delivered</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">Every service<br>built for the <span class="hl">scroll-stop</span></h2>
+    </div>
+    <p class="services-desc">
+      From raw footage to fully-polished viral content — we handle every step of the short-form video production process for brands, creators, and agencies worldwide.
+    </p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-icon">🎬</span>
+      <h3>Short-Form Video Editing</h3>
+      <p>Professional editing for TikTok, Reels & Shorts — paced for maximum retention and engagement with seamless cuts and transitions.</p>
+      <span class="service-tag">TikTok · Reels · Shorts</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔥</span>
+      <h3>Viral Hook Creation</h3>
+      <p>We craft attention-grabbing opening hooks in the first 1–3 seconds that stop the scroll and force viewers to watch to the end.</p>
+      <span class="service-tag">Hooks · Storytelling · Retention</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3>Color Grading & Correction</h3>
+      <p>Cinematic color grading that gives your content a consistent, recognizable visual identity across every platform and format.</p>
+      <span class="service-tag">Color · Mood · Branding</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✍️</span>
+      <h3>Captions & Subtitles</h3>
+      <p>Animated, styled captions that boost accessibility and watch-time — proven to increase engagement by up to 40% on silent autoplay.</p>
+      <span class="service-tag">Animated · Styled · Multilingual</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <h3>Motion Graphics & Titles</h3>
+      <p>Dynamic text animations, lower thirds, and branded motion graphics that elevate your content from raw footage to premium production.</p>
+      <span class="service-tag">Motion · Typography · Branding</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📦</span>
+      <h3>Content Repurposing</h3>
+      <p>Turn long-form podcasts, interviews, and webinars into dozens of high-performing short clips tailored for every platform algorithm.</p>
+      <span class="service-tag">Podcast Clips · Webinars · VOD</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-layout">
+    <div class="process-left reveal">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">From brief to <span class="hl">trending</span> in 4 steps</h2>
+      <p>Our streamlined workflow means you get polished, platform-ready videos without the back-and-forth chaos. Fast turnaround, zero stress.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Share Your Footage & Brief</h4>
+          <p>Upload your raw footage, reference videos, and creative direction. We review everything before starting to ensure we're fully aligned on vision.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>We Edit & Craft Your Story</h4>
+          <p>Our editor selects the best moments, writes the hook, paces the edit for retention, adds captions, music, and motion graphics — all on-brand.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Review & Revision Round</h4>
+          <p>You receive your first draft within the agreed timeline. We include up to 2 rounds of revisions so every detail feels exactly right.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Delivered & Ready to Post</h4>
+          <p>Final files are delivered in platform-optimal formats — 9:16 for TikTok/Reels, 1:1 for feeds, 16:9 for YouTube. Post and watch it perform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <span class="section-tag">Our Work</span>
+      <h2 class="section-title">Content that <span class="hl">performs</span></h2>
+    </div>
+    <a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank" class="btn-ghost" style="white-space:nowrap">View Full Portfolio →</a>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-1">
+        <span class="platform-badge">TikTok</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Brand Story Reel</h4>
+        <p>E-commerce lifestyle brand — hook-driven narrative with smooth transitions</p>
+        <div class="views">↑ 2.4M Views</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-2">
+        <span class="platform-badge">Reels</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Fitness Coach Content</h4>
+        <p>High-energy workout clips with dynamic captions and punchy cuts</p>
+        <div class="views">↑ 1.1M Views</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-3">
+        <span class="platform-badge">Shorts</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Tech Product Launch</h4>
+        <p>Product showcase with motion graphics and cinematic color grade</p>
+        <div class="views">↑ 890K Views</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-4">
+        <span class="platform-badge">TikTok</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Podcast Clip Series</h4>
+        <p>Long-form interview repurposed into 15 viral-ready clips per episode</p>
+        <div class="views">↑ 3.2M Combined</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-5">
+        <span class="platform-badge">Reels</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Real Estate Walkthrough</h4>
+        <p>Luxury property tour with smooth transitions and animated titles</p>
+        <div class="views">↑ 620K Views</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb thumb-bg-6">
+        <span class="platform-badge">Shorts</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h4>Restaurant Promo</h4>
+        <p>Food video with warm color grading and ASMR-style sound design</p>
+        <div class="views">↑ 1.5M Views</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal">
+      <span class="section-tag">Client Reviews</span>
+      <h2 class="section-title">What clients say <span class="hl">after</span> working with us</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"MEDIA KING completely transformed our social media presence. Our TikTok went from zero engagement to consistently hitting 500K+ views. The hooks he writes are genuinely incredible."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JK</div>
+          <div>
+            <div class="reviewer-name">James K.</div>
+            <div class="reviewer-role">E-commerce Brand Owner</div>
+          </div>
+          <span class="review-platform">Upwork</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Best video editor I've worked with on Upwork. Fast turnaround, incredible attention to detail, and he actually understands what makes content go viral on Reels. Will hire again."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SM</div>
+          <div>
+            <div class="reviewer-name">Sarah M.</div>
+            <div class="reviewer-role">Fitness Influencer, USA</div>
+          </div>
+          <span class="review-platform">Upwork</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"We hired MEDIA KING to repurpose our podcast into Shorts and the results speak for themselves. 3M views in 30 days. He's the kind of editor who makes your content look like it belongs on every FYP."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">AP</div>
+          <div>
+            <div class="reviewer-name">Alex P.</div>
+            <div class="reviewer-role">Podcast Creator, UK</div>
+          </div>
+          <span class="review-platform">Upwork</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPWORK CREDIBILITY SECTION -->
+<div class="upwork-section">
+  <div class="upwork-card reveal">
+    <div class="upwork-logo">upwork</div>
+    <p style="color:var(--gray-300);font-size:0.9rem;margin-top:0.25rem;">Verified Freelancer Profile</p>
+
+    <div class="upwork-badges">
+      <span class="upwork-badge-item">🏆 Top Rated</span>
+      <span class="upwork-badge-item">✅ 100% Job Success</span>
+      <span class="upwork-badge-item">⭐ 4.9 / 5.0 Rating</span>
+    </div>
+
+    <div class="upwork-stat-row">
+      <div class="upwork-stat">
+        <div class="num">60+</div>
+        <div class="lbl">Jobs Done</div>
+      </div>
+      <div class="upwork-stat">
+        <div class="num">1,300+</div>
+        <div class="lbl">Hours Worked</div>
+      </div>
+      <div class="upwork-stat">
+        <div class="num">$15</div>
+        <div class="lbl">Starting / hr</div>
+      </div>
+    </div>
+
+    <a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank" class="btn-primary" style="margin-top:2rem;display:inline-block;background:#14A800;">
+      View Full Upwork Profile →
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to go viral?</h2>
+  <p>Let's turn your raw footage into content your audience can't stop watching.</p>
+  <a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank" class="btn-dark">Start a Project Today</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="image1.png" alt="MEDIA KING Logo" onerror="this.style.display='none'">
+    MEDIA <span>KING</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=61590704015376" target="_blank">Facebook</a></li>
+    <li><a href="https://www.upwork.com/freelancers/rehanmallik" target="_blank">Upwork</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 MEDIA KING · Shah Alam, Malaysia</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (Array.from(entry.target.parentElement?.children || []).indexOf(entry.target)));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
